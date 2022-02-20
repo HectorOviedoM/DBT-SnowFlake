@@ -1,5 +1,0 @@
-select
-SUM(CASE WHEN ID IS NULL THEN 1 ELSE 0 END) / COUNT(*) AS TOTAL_NULLS
-FROM {{ref('my_first_dbt_model')}}
-
-having SUM(CASE WHEN ID IS NULL THEN 1 ELSE 0 END) / COUNT(*) > .1

@@ -17,7 +17,6 @@ models:
         description: "The primary key for this table"
         tests:
           - unique
-          - not_null
   - name: snowflake_customer_purchases
     description: "the total purchses for each customer in snowflake sample data"
     columns:
