@@ -1,10 +1,10 @@
-{{ config(materialized='view') }}
+{{ config(materialized='table') }}
 
 
 
 select c.C_CUSTKEY , sum(o.O_TOTALPRICE) as totalprice
-from "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."CUSTOMER" c
-LEFT JOIN "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."ORDERS" o
+from {{ source('sample', 'customer')}} c
+LEFT JOIN {{ source('sample', 'orders')}} o
 on c.c_custkey = o.o_custkey
-group by c.C_CUSTKEY
+{{group_by(1)}}
 having sum(o.O_TOTALPRICE) > 0

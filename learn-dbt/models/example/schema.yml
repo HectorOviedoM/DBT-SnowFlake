@@ -42,3 +42,16 @@ models:
         tests:
           - accepted_values:
               values: ['AUTOMOBILE', 'MACHINERY', 'HOUSEHOLD', 'FURNITURE']
+
+sources:
+  - name: sample
+    database: snowflake_sample_data #tell dbt to look for the source in the "raw" target_database
+    schema: tpch_sf1 #you wouldn´t put you source data in public, would you?
+    tables:
+      - name: customer
+        columns:
+          - name: c_custkey
+            tests:
+              - unique
+              - not_null
+      - name: orders
